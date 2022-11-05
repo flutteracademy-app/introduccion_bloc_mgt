@@ -1,9 +1,7 @@
 import 'dart:developer';
-
-import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:introduccion_bloc_mgt/cubits/counter/counter_state.dart';
 import 'package:introduccion_bloc_mgt/utils/status_model.dart';
-
-part 'counter_state.dart';
 
 class CounterCubit extends Cubit<CounterState> {
   CounterCubit() : super(const CounterState()) {
@@ -11,8 +9,7 @@ class CounterCubit extends Cubit<CounterState> {
   }
 
   _voidInitial() async {
-    final newState =
-        state.copyWith(counter: 0, counterStatus: StatusModel.LOADING);
+    final newState = state.copyWith(counterStatus: StatusModel.LOADING);
     log("$newState");
     emit(newState);
 
@@ -21,11 +18,10 @@ class CounterCubit extends Cubit<CounterState> {
       final newState = state.copyWith(counterStatus: StatusModel.SUCCESS);
       log("$newState");
       emit(newState);
-      //throw const FormatException(); => Lanzar error
+      //throw const FormatException(); //=> Lanzar error
     } catch (e) {
       final newState = state.copyWith(
         counterStatus: StatusModel.ERROR,
-        errorMessage: 'Esto es un error',
       );
       log("$newState");
       emit(newState);

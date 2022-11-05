@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:introduccion_bloc_mgt/cubits/counter/counter_cubit.dart';
+import 'package:introduccion_bloc_mgt/cubits/counter/counter_state.dart';
 import 'package:introduccion_bloc_mgt/pages/other_page.dart';
 import 'package:introduccion_bloc_mgt/utils/status_model.dart';
 
