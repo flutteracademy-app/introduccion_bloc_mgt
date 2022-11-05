@@ -7,18 +7,20 @@ enum AppTheme {
 
 class ThemeState {
   final AppTheme appTheme;
+  final StatusModel? statusModel;
 
   ThemeState({
     this.appTheme = AppTheme.light,
+    this.statusModel,
   });
 
-  factory ThemeState.initial() {
-    return ThemeState();
-  }
-
-  ThemeState copyWith({AppTheme? appTheme}) {
+  ThemeState copyWith({
+    AppTheme? appTheme,
+    StatusModel? statusModel,
+  }) {
     return ThemeState(
       appTheme: appTheme ?? this.appTheme,
+      statusModel: statusModel ?? this.statusModel,
     );
   }
 }

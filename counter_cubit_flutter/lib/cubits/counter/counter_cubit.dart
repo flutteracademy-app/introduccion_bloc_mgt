@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:introduccion_bloc_mgt/utils/status_model.dart';
 
 part 'counter_state.dart';
 
@@ -16,12 +17,16 @@ class CounterCubit extends Cubit<CounterState> {
     emit(newState);
 
     try {
-      increment();
+      //DBFunction();
       final newState = state.copyWith(counterStatus: StatusModel.SUCCESS);
       log("$newState");
       emit(newState);
+      //throw const FormatException(); => Lanzar error
     } catch (e) {
-      final newState = state.copyWith(counterStatus: StatusModel.ERROR);
+      final newState = state.copyWith(
+        counterStatus: StatusModel.ERROR,
+        errorMessage: 'Esto es un error',
+      );
       log("$newState");
       emit(newState);
     }

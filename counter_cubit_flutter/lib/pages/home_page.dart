@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:introduccion_bloc_mgt/cubits/counter/counter_cubit.dart';
 import 'package:introduccion_bloc_mgt/pages/other_page.dart';
+import 'package:introduccion_bloc_mgt/utils/status_model.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -55,12 +56,25 @@ class HomePage extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          return Center(
-            child: Text(
-              "${state.counter}",
-              style: const TextStyle(fontSize: 50.0),
-            ),
-          );
+          if (state.counterStatus == StatusModel.LOADING) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if (state.counterStatus == StatusModel.SUCCESS) {
+            return Center(
+              child: Text(
+                "${state.counter}",
+                style: const TextStyle(fontSize: 50.0),
+              ),
+            );
+          }
+
+          if (state.counterStatus == StatusModel.ERROR) {
+            return AlertDialog(content: Text('${state.errorMessage}'));
+          }
+          return Container();
         },
       ),
 
